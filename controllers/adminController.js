@@ -316,7 +316,7 @@ const mailTransporter = (email, id, productName, text1, text2, productDescriptio
 
         // Construct absolute paths for image files
         const logoPath = path.join(__dirname,'final.png');
-          const productImagePath =    `rummyspace/public/productImages/${imageUrl}` ;
+          const productImagePath =   imageUrl ;
         // const img = `/static/productImages/${imageUrl}`
     
         console.log(imageUrl)
