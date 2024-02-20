@@ -1,0 +1,393 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>RummySpace.in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/favion.svg">
+    <!-- Template CSS -->
+    <link href="/assets/css/main.css" rel="stylesheet" type="text/css" />
+
+    <!-- Prevent caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index.html" class="brand-wrap">
+                <img src="/logo1.jpg" alt="RummySpace.in">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/adminHome"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a class="menu-link" href="/admin/productsList"> <i
+                            class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/addProducts"> <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Add product</span>
+                    </a>
+                </li>
+                
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/addMessage"> <i class="icon material-icons md-comment"></i>
+                        <span class="text">Message</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/feedbackPage"> <i class="icon material-icons md-stars"></i>
+                        <span class="text">Feedbacks</span> </a>
+                </li>
+           
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/subscribersPage"> <i class="icon material-icons md-people"></i>
+                        <span class="text">Subscribers</span> </a>
+                </li>
+               
+            </ul>
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+                <h3>Rummy Space- Edit Products</h3>
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside">
+                    <i class="material-icons md-apps"></i>
+                </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#">
+                            <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon">
+                            <i class="material-icons md-cast"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item text-danger" href="/admin/logout">
+                            <i class="material-icons md-exit_to_app"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="content-main">
+            <form method="post" onsubmit="return validateForm()" action="/admin/editProducts"
+                enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="content-header">
+                            <h2 class="content-title">Edit Product</h2>
+                        </div>
+                    </div>
+
+    
+                    <input type="hidden" name="productId" value="<%= editProductData._id %>">
+
+                  
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <label for="productName" class="form-label">Product Name</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="productName"
+                                        value="<%= editProductData.productName%>" name="productName">
+                                    <p id="productNameModify" style="color: red;"> </p>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="text1" class="form-label">Text 1</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="text1"
+                                        value="<%= editProductData.text1%>" name="text1">
+                                    <p id="text1Modify" style="color: red;"> </p>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="text2" class="form-label">Text 2</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="text2"
+                                        value="<%= editProductData.text2%>" name="text2">
+
+                                    <p id="text2Modify" style="color: red;"> </p>
+
+
+                                </div>
+                            </div>
+                        </div> <!-- card end// -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div>
+                                    <label class="form-label">Description</label>
+                                    <textarea placeholder="Type here" id="description" class="form-control" rows="4"
+                                        name="description"> <%= editProductData.description %> </textarea>
+                                    <p id="descriptionModify" style="color: red;"> </p>
+
+                                </div>
+                            </div>
+                        </div> <!-- card end// -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <label class="form-label">Download Item  <p style="color: red;">(Please upload a new
+                                        file)</p></label>
+                                    <input class="form-control" type="file" name="file" id="file">
+                                    <p id="fileModify" style="color: red;"> </p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                       
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <label class="form-label"> Priority To Display (Add number):</label>
+                                    <input type="text" id="priorityNumber" placeholder="Type here" class="form-control"
+                                        value="<%= editProductData.priorityNumber%>" name="priorityNumber">
+                                    <p id="priorityNumberModify" style="color: red;"> </p>
+
+                                </div>
+                            </div>
+
+                        </div> <!-- card end// -->
+
+                        <div class="mb-4">
+                            <div class="card-body">
+
+                                <label class="form-label">Is Active</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="isActive" id="isActiveYes"
+                                        value="Yes" checked>
+                                    <label class="form-check-label" for="isActiveYes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="isActive" id="isActiveNo"
+                                        value="No">
+                                    <label class="form-check-label" for="isActiveNo">No</label>
+                                </div>
+                                <p id="isActiveModify" style="color: red;"></p>
+
+                                <hr>
+                                <label class="form-label">Broadcast</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Broadcast" id="BroadcastYes"
+                                        value="Yes" >
+                                    <label class="form-check-label" for="BroadcastYes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Broadcast" id="BroadcastNo"
+                                        value="No" checked>
+                                    <label class="form-check-label" for="BroadcastNo">No</label>
+                                </div>
+                                <p id="BroadcastModify" style="color: red;"></p>
+
+
+                                <hr>
+                                <label class="form-label">Is Popular</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="isPopular" id="isPopularYes" value="Yes" >
+                                    <label class="form-check-label" for="isPopularYes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="isPopular" id="isPopularNo" value="No" checked>
+                                    <label class="form-check-label" for="isPopularNo">No</label>
+                                </div>
+                                <p id="isPopulaarModify" style="color: red;"></p>
+                          
+
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <label class="form-label"> Expiry Date:</label>
+                                    <input type="date" id="expiryDate" placeholder="Type here" class="form-control"
+                                        name="expiryDate"
+                                        value="<%= editProductData.expiryDate.toISOString().split('T')[0] %>">
+
+                                    <p id="expiryDateModify" style="color: red;"> </p>
+
+                                </div>
+                            </div>
+                        </div> <!-- card end// -->
+
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div>
+                                    <label class="form-label">Images <p style="color: red;">(Please upload a new image)
+                                        </p></label>
+
+                                    <input type="file" id="image" name="image">
+                                    <p id="imageModify" style="color: red;"></p>
+
+                                    <br>
+                                    <div id="imagePreviewContainer">
+                                        Previously stored image:
+                                        <img src="/productImages/<%= editProductData.imageUrl %>"
+                                            alt="Previously stored image">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> <!-- card end// -->
+
+                        <div id="imagePreviewContainer"></div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div> <!-- card end// -->
+                </div>
+            </form>
+
+        </section>
+        <footer class="main-footer font-xs">
+            <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> ©, RummySpace.in
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <!-- JavaScript libraries -->
+    <script src="/assets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/vendors/select2.min.js"></script>
+    <script src="/assets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/assets/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Cropper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <!-- Main Script -->
+    <script src="/assets/js/main.js" type="text/javascript"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('image').addEventListener('change', function (event) {
+                var files = event.target.files;
+
+                // Remove existing images in the preview container
+                var imagePreviewContainer = document.getElementById('imagePreviewContainer');
+                while (imagePreviewContainer.firstChild) {
+                    imagePreviewContainer.removeChild(imagePreviewContainer.firstChild);
+                }
+
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var imageContainer = document.createElement('div');
+                        imageContainer.classList.add('uploaded-image-container');
+
+                        var img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.alt = 'Uploaded Image';
+                        img.classList.add('uploaded-image');
+                        imageContainer.appendChild(img);
+
+                        imagePreviewContainer.appendChild(imageContainer);
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function validateForm() {
+            var productNameModify = document.getElementById('productName').value.trim();
+            var descriptionModify = document.getElementById('description').value.trim();
+            var text1Modify = document.getElementById('text1').value.trim();
+            var text2Modify = document.getElementById('text2').value.trim();
+            var priorityNumberModify = document.getElementById('priorityNumber').value.trim();
+            var expiryDateModify = document.getElementById('expiryDate').value.trim();
+ 
+
+            var isValid = true;
+
+            // Reset error messages
+            document.getElementById('productNameModify').innerText = '';
+            document.getElementById('descriptionModify').innerText = '';
+            document.getElementById('text1Modify').innerText = '';
+            document.getElementById('text2Modify').innerText = '';
+            document.getElementById('priorityNumberModify').innerText = '';
+ 
+            document.getElementById('expiryDateModify').innerText = '';
+
+            if (productNameModify === '') {
+                document.getElementById('productNameModify').innerText = 'Product name cannot be empty';
+                isValid = false;
+            }
+            if (expiryDateModify === '') {
+                document.getElementById('expiryDateModify').innerText = 'Expiry date cannot be empty';
+                isValid = false;
+            }
+
+            if (descriptionModify === '') {
+                document.getElementById('descriptionModify').innerText = 'Description cannot be empty';
+                isValid = false;
+            }
+
+            if (text1Modify === '') {
+                document.getElementById('text1Modify').innerText = 'Text 1 cannot be empty';
+                isValid = false;
+            }
+
+            if (text2Modify === '') {
+                document.getElementById('text2Modify').innerText = 'Text 2 cannot be empty';
+                isValid = false;
+            }
+
+            if (priorityNumberModify === '') {
+                document.getElementById('priorityNumberModify').innerText = 'Priority number cannot be empty';
+                isValid = false;
+            } else if (isNaN(priorityNumberModify)) {
+                document.getElementById('priorityNumberModify').innerText = 'Priority number must be a valid number';
+                isValid = false;
+            }
+
+          
+
+            return isValid;
+        }
+
+
+    </script>
+</body>
+
+</html>

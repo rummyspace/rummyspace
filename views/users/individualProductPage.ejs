@@ -1,0 +1,187 @@
+
+<%- include('../partials/header')-%>
+<style>
+    /* Define styles for images */
+    .intro-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Media query for small screens */
+    @media (max-width: 768px) {
+        .intro-image {
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    /* Media query for medium screens */
+    @media (min-width: 768px) and (max-width: 992px) {
+        .intro-image {
+            width: 150px;
+            height: 150px;
+        }
+    }
+
+    /* Media query for large screens */
+    @media (min-width: 992px) {
+        .intro-image {
+            width: 300px;
+            height: 300px;
+        }
+    }
+
+    .moving-text-container {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .moving-text {
+        animation: moveRightToLeft 10s linear infinite;
+    }
+
+    @keyframes moveRightToLeft {
+        0% {
+            transform: translateX(100%);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+</style>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <%- include('../partials/navbar')-%>
+
+
+            <% if(productData  ) { %>
+
+            <div class="container-xxl py-5 bg-dark hero-header mb-5">
+                <div class="container text-center my-5 pt-5 pb-4">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown"><%= productData.productName %></h1>
+                     
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+
+        <!-- About Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-12 text-start">
+                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="/productImages/<%= productData.imageUrl %>">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">RummySpace.in</h5>
+                        <h1 class="mb-2"> <%= productData.productName %></h1>
+                        <h6 class="text-uppercase mb-1"><%= productData.text1 %></h6>
+                        <h6 class="text-uppercase mb-2"><%= productData.text2 %></h6>
+                        <p class="mb-4"><%= productData.description %></p>
+                        <div class="row g-4 mb-4">
+                            <div class="col-sm-6">
+                                <div class="d-flex align-items-center border-start border-5 border-primary px-3">
+                                    <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up"><%= productData.mostDownloads %></h1>
+                                    <div class="ps-4">
+                                        <p class="mb-0">Number of</p>
+                                        <h6 class="text-uppercase mb-0">Downloads</h6>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <button id="downloadButton"
+                        onclick="downloadAPK('<%= productData.downloadLink %>','<%= productData.productName %>','<%=productData._id %>')"
+                        class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
+                        style="background-image: linear-gradient(to right, #4e54c8, #8f94fb); border: none; font-size: 0.8rem;">
+                        <i class="fas fa-download mr-1"></i>
+                        Download
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+
+
+       <% } %>
+        
+       <% if (messageData.length > 0) { %>
+        <div class="moving-text-container bg-dark text-white mt-5">
+            <div class="moving-text">
+            <% messageData.forEach(function(message) { %>
+                    <%= message.text1  %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                    <% }); %>
+                </div>
+        </div>
+    <% } %>
+       <script>
+        function downloadAPK(apkName, productName, iddd) {
+            // console.log(productName)
+            // console.log('id', iddd)
+            // Create a dummy anchor element
+            var dummyAnchor = document.createElement('a');
+
+            // Set the attributes for the anchor element
+            dummyAnchor.setAttribute('href', `/apkFiles/${apkName}`); // Replace with the path to your APK file
+            dummyAnchor.setAttribute('download', `${productName}.apk`); // Replace with the desired name for the downloaded file
+
+            // Append the anchor element to the document body
+            document.body.appendChild(dummyAnchor);
+
+            // Click the anchor element to trigger the download
+            dummyAnchor.click();
+
+            // Remove the anchor element from the document body
+            document.body.removeChild(dummyAnchor);
+            // increaseDownload(id)
+            increase(iddd)
+        }
+
+        function increase(id) {
+            // console.log('worked')
+            let iD = '123'
+            fetch(`increase/${id}`, {
+                method: 'Post'
+            })
+                .then((response) => response.json())
+                .then(data => {
+                    if (data.success) {
+                        toastr.success(data.message)
+                        updateCartAndWishlistQuantity()
+
+                    } else {
+                        toastr.warning(data.message)
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
+        }
+
+
+    </script>
+
+<%- include('../partials/footer')-%>
+ 
