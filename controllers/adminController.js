@@ -310,17 +310,13 @@ const mailTransporter = (email, id, productName, text1, text2, productDescriptio
         }
     });
 
-    // // Get the absolute path to the image files
-    // const imagePath = 'C:\\Users\\Lenovo\\OneDrive\\Desktop\\PROJECT X\\RummySpace\\public\\final.png';
-    // const productImagePath = `\\productImages\\${imageUrl}`;
+ 
 
         // Construct absolute paths for image files
         const logoPath = path.join(__dirname,'final.png');
-          const productImagePath =   imageUrl ;
-        // const img = `/static/productImages/${imageUrl}`
+      
     
-        console.log(imageUrl)
-
+       
     // HTML content of the email
     let mailOptions = {
         from: process.env.GMAIL_USER,
@@ -397,7 +393,7 @@ const mailTransporter = (email, id, productName, text1, text2, productDescriptio
             <h2 style="color: #4CAF50;">${text1}</h2>
             <h3 style="color: #4CAF50;">${text2}</h3>
             <p class="product-description">${productDescription}</p>
-            <img src="cid:productImage" alt="Product Image" style="max-width: 100%;">
+          
         </div>
             <p>To experience the power of ${productName} firsthand, simply click on the link below:</p>
             <p><a href="https://rummyspace.in/individualProductPage?productId=${id}" style="color: #4CAF50; text-decoration: none; font-weight: bold;">Explore ${productName} Now!</a></p>
@@ -419,11 +415,7 @@ const mailTransporter = (email, id, productName, text1, text2, productDescriptio
                 path: logoPath ,
                 cid: 'logo' // Use this to link the image in the HTML content
             },
-            {
-                filename: imageUrl,
-                path:  productImagePath,
-                cid: 'productImage' // Use this to link the image in the HTML content
-            }
+            
         ]
     };
 
