@@ -310,9 +310,16 @@ const mailTransporter = (email, id, productName, text1, text2, productDescriptio
         }
     });
 
-    // Get the absolute path to the image files
-    const imagePath = 'C:\\Users\\Lenovo\\OneDrive\\Desktop\\PROJECT X\\RummySpace\\public\\final.png';
-    const productImagePath = `C:\\Users\\Lenovo\\OneDrive\\Desktop\\PROJECT X\\RummySpace\\public\\productImages\\${imageUrl}`;
+    // // Get the absolute path to the image files
+    // const imagePath = 'C:\\Users\\Lenovo\\OneDrive\\Desktop\\PROJECT X\\RummySpace\\public\\final.png';
+    // const productImagePath = `\\productImages\\${imageUrl}`;
+
+        // Construct absolute paths for image files
+        const logoPath = path.join(__dirname,'final.png');
+        const productImagePath = path.join(__dirname, '../public/productImages', imageUrl);
+        // const img = `/static/productImages/${imageUrl}`
+    
+        console.log(imageUrl)
 
     // HTML content of the email
     let mailOptions = {
@@ -409,12 +416,12 @@ const mailTransporter = (email, id, productName, text1, text2, productDescriptio
         attachments: [
             {
                 filename: 'final.png',
-                path: imagePath,
+                path: logoPath ,
                 cid: 'logo' // Use this to link the image in the HTML content
             },
             {
                 filename: imageUrl,
-                path: productImagePath,
+                path:  productImagePath,
                 cid: 'productImage' // Use this to link the image in the HTML content
             }
         ]
