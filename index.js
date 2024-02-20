@@ -34,7 +34,7 @@ app.set('views', './views');
 app.use('/admin', adminRoute);
 app.use('/', userRoute);
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);
 });
