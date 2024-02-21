@@ -297,7 +297,7 @@ const broadcastProduct1 = async (productData) => {
         if (productData && productData.Broadcast === true) {
             const subscribers = await Subscribers.find({}, 'email');
             for (let subscriber of subscribers) {
-                mailTransporter(subscriber.email, productData._id, productData.productName, productData.text1, productData.text2, productData.description, productData.imageUrl);
+                mailTransporter(subscriber.email, productData._id, productData.productName, productData.text1, productData.text2, productData.description1,productData.description2,productData.description3, productData.imageUrl);
             }
         }
     } catch (error) {
@@ -307,7 +307,7 @@ const broadcastProduct1 = async (productData) => {
 };
 
 
-const mailTransporter = (email, id, productName, text1, text2, productDescription, imageUrl) => {
+const mailTransporter = (email, id, productName, text1, text2, productDescription1, productDescription2, productDescription3)  => {
     // Create a transporter for Gmail
     let transporter = nodemailer.createTransport({
         service: "gmail",
@@ -396,7 +396,9 @@ const mailTransporter = (email, id, productName, text1, text2, productDescriptio
             <h1 style="color: #FF0000;">${productName}</h1>
             <h2 style="color: #4CAF50;">${text1}</h2>
             <h3 style="color: #4CAF50;">${text2}</h3>
-            <p class="product-description">${productDescription}</p>
+            <p class="product-description">${productDescription1}</p>
+            <p class="product-description">${productDescription2}</p>
+            <p class="product-description">${productDescription3}</p>
           
         </div>
             <p>To experience the power of ${productName} firsthand, simply click on the link below:</p>
