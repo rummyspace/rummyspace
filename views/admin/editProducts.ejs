@@ -136,10 +136,24 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div>
-                                    <label class="form-label">Description</label>
-                                    <textarea placeholder="Type here" id="description" class="form-control" rows="4"
-                                        name="description"> <%= editProductData.description %> </textarea>
-                                    <p id="descriptionModify" style="color: red;"> </p>
+                                    <label class="form-label">Description 1</label>
+                                    <textarea placeholder="Type here" id="description1" class="form-control" rows="4"
+                                        name="description1"> <%= editProductData.description1 %> </textarea>
+                                    <p id="descriptionModify1" style="color: red;"> </p>
+
+                                </div>
+                                <div>
+                                    <label class="form-label">Description 2</label>
+                                    <textarea placeholder="Type here" id="description2" class="form-control" rows="4"
+                                        name="description2"> <%= editProductData.description2 %> </textarea>
+                                    <p id="descriptionModify2" style="color: red;"> </p>
+
+                                </div>
+                                <div>
+                                    <label class="form-label">Description 3</label>
+                                    <textarea placeholder="Type here" id="description3" class="form-control" rows="4"
+                                        name="description3"> <%= editProductData.description3 %> </textarea>
+                                    <p id="descriptionModify3" style="color: red;"> </p>
 
                                 </div>
                             </div>
@@ -166,6 +180,14 @@
                                     <input type="text" id="priorityNumber" placeholder="Type here" class="form-control"
                                         value="<%= editProductData.priorityNumber%>" name="priorityNumber">
                                     <p id="priorityNumberModify" style="color: red;"> </p>
+
+
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Number of downloads:</label>
+                                    <input type="text" id="mostDownloads" placeholder="Type here" class="form-control"
+                                        value="<%= editProductData.mostDownloads%>" name="mostDownloads">
+                                     
 
                                 </div>
                             </div>
@@ -331,7 +353,7 @@
     <script>
         function validateForm() {
             var productNameModify = document.getElementById('productName').value.trim();
-            var descriptionModify = document.getElementById('description').value.trim();
+            var descriptionModify1 = document.getElementById('description1').value.trim();
             var text1Modify = document.getElementById('text1').value.trim();
             var text2Modify = document.getElementById('text2').value.trim();
             var priorityNumberModify = document.getElementById('priorityNumber').value.trim();
@@ -342,7 +364,7 @@
 
             // Reset error messages
             document.getElementById('productNameModify').innerText = '';
-            document.getElementById('descriptionModify').innerText = '';
+            document.getElementById('descriptionModify1').innerText = '';
             document.getElementById('text1Modify').innerText = '';
             document.getElementById('text2Modify').innerText = '';
             document.getElementById('priorityNumberModify').innerText = '';
@@ -358,8 +380,8 @@
                 isValid = false;
             }
 
-            if (descriptionModify === '') {
-                document.getElementById('descriptionModify').innerText = 'Description cannot be empty';
+            if (descriptionModify1 === '') {
+                document.getElementById('descriptionModify1').innerText = 'Description 1 cannot be empty';
                 isValid = false;
             }
 
