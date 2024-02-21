@@ -64,7 +64,9 @@ const loadAddProducts = async (req, res) => {
 
 const addProducts = async (req, res) => {
     try {
-        const { productName, text1, text2, description, priorityNumber, expiryDate, isActive, isPopular, Broadcast } = req.body;
+        const { productName, text1, text2,   description1,
+            description2,
+            description3, priorityNumber, expiryDate, isActive, isPopular, Broadcast } = req.body;
         const isActiveValue = isActive === 'No' ? false : true;
         const isPopularValue = isPopular === 'No' ? false : true;
         const BroadcastValue = Broadcast === 'No' ? false : true;
@@ -75,7 +77,9 @@ const addProducts = async (req, res) => {
             productName,
             text1,
             text2,
-            description,
+            description1,
+            description2,
+            description3,
             priorityNumber,
             expiryDate,
             imageUrl: req.files['image'][0].filename,
@@ -132,7 +136,7 @@ const editProducts = async (req, res) => {
 const editProductsUpdated = async (req, res) => {
     try {
 
-        const { productId, productName, text1, text2, description, priorityNumber, expiryDate, isActive, isPopular, Broadcast } = req.body;
+        const { productId, productName, text1, text2, description1, description2, description3, priorityNumber, expiryDate, isActive, isPopular, Broadcast , mostDownloads} = req.body;
         // console.log("Broadcast:", Broadcast);
         const isActiveValue = isActive === 'No' ? false : true;
         const isPopularValue = isPopular === 'No' ? false : true;
@@ -142,9 +146,12 @@ const editProductsUpdated = async (req, res) => {
             productName,
             text1,
             text2,
-            description,
+            description1,
+            description2,
+            description3,
             priorityNumber,
             expiryDate,
+            mostDownloads,
             isActive: isActiveValue,
             isPopular: isPopularValue,
             Broadcast: BroadcastValue,
@@ -311,12 +318,9 @@ const mailTransporter = (email, id, productName, text1, text2, productDescriptio
     });
 
  
-
-        // Construct absolute paths for image files
         const logoPath = path.join(__dirname,'final.png');
       
-    
-       
+
     // HTML content of the email
     let mailOptions = {
         from: process.env.GMAIL_USER,
@@ -397,7 +401,7 @@ const mailTransporter = (email, id, productName, text1, text2, productDescriptio
         </div>
             <p>To experience the power of ${productName} firsthand, simply click on the link below:</p>
             <p><a href="https://rummyspace.in/individualProductPage?productId=${id}" style="color: #4CAF50; text-decoration: none; font-weight: bold;">Explore ${productName} Now!</a></p>
-            <p>Thank you for your continued support and loyalty. We're confident that <a href="https://rummyspace.in/}" style="color: #4CAF50; text-decoration: none; font-weight: bold;">RummySpace.in</a> will exceed your expectations and become an indispensable tool in your life.</p>
+            <p>Thank you for your continued support and loyalty. We're confident that <a href="https://rummyspace.in/" style="color: #4CAF50; text-decoration: none; font-weight: bold;">RummySpace.in</a> will exceed your expectations and become an indispensable tool in your life.</p>
             <p>Best regards,<br>RummySpace.in<br> </p>
         </div>
         <div class="footer">
@@ -415,7 +419,7 @@ const mailTransporter = (email, id, productName, text1, text2, productDescriptio
                 path: logoPath ,
                 cid: 'logo' // Use this to link the image in the HTML content
             },
-            
+             
         ]
     };
 
