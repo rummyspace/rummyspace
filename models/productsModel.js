@@ -4,7 +4,9 @@
         productName: String,
         text1: String,
         text2: String,
-        description: String,
+        description1: String,
+        description2: String,
+        description3: String,
         downloadLink: String,
         priorityNumber: {
             type: Number,
