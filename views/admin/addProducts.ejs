@@ -24,34 +24,31 @@
                 <img src="/logo1.jpg" alt="RummySpace.in">
             </a>
             <div>
-                <button class="btn btn-icon btn-aside-minimize">
-                    <i class="text-muted material-icons md-menu_open"></i>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i>
                 </button>
             </div>
         </div>
         <nav>
             <ul class="menu-aside">
-                <li class="menu-item">
-                    <a class="menu-link" href="/admin/adminHome">
-                        <i class="icon material-icons md-home"></i>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/adminHome"> <i class="icon material-icons md-home"></i>
                         <span class="text">Dashboard</span>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="/admin/productsList">
-                        <i class="icon material-icons md-shopping_bag"></i>
+                <li class="menu-item active">
+                    <a class="menu-link" href="/admin/productsList"> <i
+                            class="icon material-icons md-shopping_bag"></i>
                         <span class="text">Products</span>
                     </a>
                 </li>
-                <li class="menu-item active">
-                    <a class="menu-link" href="/admin/addProducts">
-                        <i class="icon material-icons md-add_box"></i>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/addProducts"> <i class="icon material-icons md-add_box"></i>
                         <span class="text">Add product</span>
                     </a>
                 </li>
-                <li class="menu-item ">
-                    <a class="menu-link" href="/admin/addMessage">
-                        <i class="icon material-icons md-comment"></i>
+                
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/addMessage"> <i class="icon material-icons md-comment"></i>
                         <span class="text">Message</span>
                     </a>
                 </li>
@@ -59,20 +56,19 @@
                     <a class="menu-link" href="/admin/feedbackPage"> <i class="icon material-icons md-stars"></i>
                         <span class="text">Feedbacks</span> </a>
                 </li>
+           
                 <li class="menu-item ">
                     <a class="menu-link" href="/admin/subscribersPage"> <i class="icon material-icons md-people"></i>
                         <span class="text">Subscribers</span> </a>
                 </li>
-
-
-
+               
             </ul>
         </nav>
     </aside>
     <main class="main-wrap">
         <header class="main-header navbar">
             <div class="col-search">
-                <h3>Rummy Space- Add Products</h3>
+                <h3>Rummy Space- Edit Products</h3>
             </div>
             <div class="col-nav">
                 <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside">
@@ -98,33 +94,38 @@
             </div>
         </header>
         <section class="content-main">
-            <form method="post" onsubmit="return validateForm()" action="/admin/addProducts"
+            <form method="post" onsubmit="return validateForm()" action="/admin/editProducts"
                 enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-9">
                         <div class="content-header">
-                            <h2 class="content-title">Add New Product</h2>
+                            <h2 class="content-title">Edit Product</h2>
                         </div>
                     </div>
+
+    
+                    <input type="hidden" name="productId" value="<%= editProductData._id %>">
+
+                  
                     <div class="col-lg-6">
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="mb-4">
                                     <label for="productName" class="form-label">Product Name</label>
                                     <input type="text" placeholder="Type here" class="form-control" id="productName"
-                                        name="productName">
+                                        value="<%= editProductData.productName%>" name="productName">
                                     <p id="productNameModify" style="color: red;"> </p>
                                 </div>
                                 <div class="mb-4">
                                     <label for="text1" class="form-label">Text 1</label>
                                     <input type="text" placeholder="Type here" class="form-control" id="text1"
-                                        name="text1">
+                                        value="<%= editProductData.text1%>" name="text1">
                                     <p id="text1Modify" style="color: red;"> </p>
                                 </div>
                                 <div class="mb-4">
                                     <label for="text2" class="form-label">Text 2</label>
                                     <input type="text" placeholder="Type here" class="form-control" id="text2"
-                                        name="text2">
+                                        value="<%= editProductData.text2%>" name="text2">
 
                                     <p id="text2Modify" style="color: red;"> </p>
 
@@ -135,26 +136,41 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div>
-                                    <label class="form-label">Description</label>
-                                    <textarea placeholder="Type here" id="description" class="form-control" rows="4"
-                                        name="description"></textarea>
-                                    <p id="descriptionModify" style="color: red;"> </p>
+                                    <label class="form-label">Description 1</label>
+                                    <textarea placeholder="Type here" id="description1" class="form-control" rows="4"
+                                        name="description1"> <%= editProductData.description1 %> </textarea>
+                                    <p id="descriptionModify1" style="color: red;"> </p>
+
+                                </div>
+                                <div>
+                                    <label class="form-label">Description 2</label>
+                                    <textarea placeholder="Type here" id="description2" class="form-control" rows="4"
+                                        name="description2"> <%= editProductData.description2 %> </textarea>
+                                    <p id="descriptionModify2" style="color: red;"> </p>
+
+                                </div>
+                                <div>
+                                    <label class="form-label">Description 3</label>
+                                    <textarea placeholder="Type here" id="description3" class="form-control" rows="4"
+                                        name="description3"> <%= editProductData.description3 %> </textarea>
+                                    <p id="descriptionModify3" style="color: red;"> </p>
 
                                 </div>
                             </div>
                         </div> <!-- card end// -->
-
-
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="mb-4">
-                                    <label class="form-label">Download Item</label>
+                                    <label class="form-label">Download Item  <p style="color: red;">(Please upload a new
+                                        file)</p></label>
                                     <input class="form-control" type="file" name="file" id="file">
                                     <p id="fileModify" style="color: red;"> </p>
 
                                 </div>
                             </div>
                         </div>
+
+                       
                     </div>
                     <div class="col-lg-3">
                         <div class="card mb-4">
@@ -162,8 +178,16 @@
                                 <div class="mb-4">
                                     <label class="form-label"> Priority To Display (Add number):</label>
                                     <input type="text" id="priorityNumber" placeholder="Type here" class="form-control"
-                                        name="priorityNumber">
+                                        value="<%= editProductData.priorityNumber%>" name="priorityNumber">
                                     <p id="priorityNumberModify" style="color: red;"> </p>
+
+
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Number of downloads:</label>
+                                    <input type="text" id="mostDownloads" placeholder="Type here" class="form-control"
+                                        value="<%= editProductData.mostDownloads%>" name="mostDownloads">
+                                     
 
                                 </div>
                             </div>
@@ -185,6 +209,7 @@
                                     <label class="form-check-label" for="isActiveNo">No</label>
                                 </div>
                                 <p id="isActiveModify" style="color: red;"></p>
+
                                 <hr>
                                 <label class="form-label">Broadcast</label>
                                 <div class="form-check form-check-inline">
@@ -203,17 +228,15 @@
                                 <hr>
                                 <label class="form-label">Is Popular</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="isPopular" id="isPopularYes"
-                                        value="Yes">
+                                    <input class="form-check-input" type="radio" name="isPopular" id="isPopularYes" value="Yes" >
                                     <label class="form-check-label" for="isPopularYes">Yes</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="isPopular" id="isPopularNo"
-                                        value="No" checked>
+                                    <input class="form-check-input" type="radio" name="isPopular" id="isPopularNo" value="No" checked>
                                     <label class="form-check-label" for="isPopularNo">No</label>
                                 </div>
                                 <p id="isPopulaarModify" style="color: red;"></p>
-
+                          
 
                             </div>
                         </div>
@@ -223,7 +246,9 @@
                                 <div class="mb-4">
                                     <label class="form-label"> Expiry Date:</label>
                                     <input type="date" id="expiryDate" placeholder="Type here" class="form-control"
-                                        name="expiryDate">
+                                        name="expiryDate"
+                                        value="<%= editProductData.expiryDate.toISOString().split('T')[0] %>">
+
                                     <p id="expiryDateModify" style="color: red;"> </p>
 
                                 </div>
@@ -233,9 +258,18 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div>
-                                    <label class="form-label">Images</label>
-                                    <input class="form-control" type="file" name="image" id="image">
-                                    <p id="imageModify" style="color: red;"> </p>
+                                    <label class="form-label">Images <p style="color: red;">(Please upload a new image)
+                                        </p></label>
+
+                                    <input type="file" id="image" name="image">
+                                    <p id="imageModify" style="color: red;"></p>
+
+                                    <br>
+                                    <div id="imagePreviewContainer">
+                                        Previously stored image:
+                                        <img src="/productImages/<%= editProductData.imageUrl %>"
+                                            alt="Previously stored image">
+                                    </div>
 
                                 </div>
                             </div>
@@ -319,24 +353,22 @@
     <script>
         function validateForm() {
             var productNameModify = document.getElementById('productName').value.trim();
-            var descriptionModify = document.getElementById('description').value.trim();
+            var descriptionModify1 = document.getElementById('description1').value.trim();
             var text1Modify = document.getElementById('text1').value.trim();
             var text2Modify = document.getElementById('text2').value.trim();
             var priorityNumberModify = document.getElementById('priorityNumber').value.trim();
             var expiryDateModify = document.getElementById('expiryDate').value.trim();
-            var fileModify = document.getElementById('file');
-            var imageModify = document.getElementById('image');
+ 
 
             var isValid = true;
 
             // Reset error messages
             document.getElementById('productNameModify').innerText = '';
-            document.getElementById('descriptionModify').innerText = '';
+            document.getElementById('descriptionModify1').innerText = '';
             document.getElementById('text1Modify').innerText = '';
             document.getElementById('text2Modify').innerText = '';
             document.getElementById('priorityNumberModify').innerText = '';
-            document.getElementById('fileModify').innerText = '';
-            document.getElementById('imageModify').innerText = '';
+ 
             document.getElementById('expiryDateModify').innerText = '';
 
             if (productNameModify === '') {
@@ -348,8 +380,8 @@
                 isValid = false;
             }
 
-            if (descriptionModify === '') {
-                document.getElementById('descriptionModify').innerText = 'Description cannot be empty';
+            if (descriptionModify1 === '') {
+                document.getElementById('descriptionModify1').innerText = 'Description 1 cannot be empty';
                 isValid = false;
             }
 
@@ -371,29 +403,7 @@
                 isValid = false;
             }
 
-            // Check if a file is selected for the file input
-            if (fileModify.files.length === 0) {
-                document.getElementById('fileModify').innerText = 'Please select a file';
-                isValid = false;
-            } else {
-                var fileExtension = fileModify.files[0].name.split('.').pop().toLowerCase();
-                if (fileExtension !== 'apk') {
-                    document.getElementById('fileModify').innerText = 'Please select a valid file (APK)';
-                    isValid = false;
-                }
-            }
-
-            // Check if an image is selected for the image input
-            if (imageModify.files.length === 0) {
-                document.getElementById('imageModify').innerText = 'Please select an image';
-                isValid = false;
-            } else {
-                var imageExtension = imageModify.files[0].name.split('.').pop().toLowerCase();
-                if (!['jpg', 'jpeg', 'png', 'gif'].includes(imageExtension)) {
-                    document.getElementById('imageModify').innerText = 'Please select a valid image (JPG, JPEG, PNG, GIF)';
-                    isValid = false;
-                }
-            }
+          
 
             return isValid;
         }
