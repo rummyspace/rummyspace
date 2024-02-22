@@ -65,8 +65,8 @@ const loadAddProducts = async (req, res) => {
 const addProducts = async (req, res) => {
     try {
         const { productName, text1, text2,   description1,
-            description2,
-            description3, priorityNumber, expiryDate, isActive, isPopular, Broadcast } = req.body;
+            description2,redirectLink,
+            description3, priorityNumber, expiryDate, isActive,referral, isPopular, Broadcast } = req.body;
         const isActiveValue = isActive === 'No' ? false : true;
         const isPopularValue = isPopular === 'No' ? false : true;
         const BroadcastValue = Broadcast === 'No' ? false : true;
@@ -76,7 +76,9 @@ const addProducts = async (req, res) => {
             Broadcast: BroadcastValue,
             productName,
             text1,
+            referral,
             text2,
+            redirectLink,
             description1,
             description2,
             description3,
@@ -136,7 +138,7 @@ const editProducts = async (req, res) => {
 const editProductsUpdated = async (req, res) => {
     try {
 
-        const { productId, productName, text1, text2, description1, description2, description3, priorityNumber, expiryDate, isActive, isPopular, Broadcast , mostDownloads} = req.body;
+        const { productId, productName, text1, text2, description1, description2,referral, redirectLink, description3, priorityNumber, expiryDate, isActive, isPopular, Broadcast , mostDownloads} = req.body;
         // console.log("Broadcast:", Broadcast);
         const isActiveValue = isActive === 'No' ? false : true;
         const isPopularValue = isPopular === 'No' ? false : true;
@@ -145,12 +147,12 @@ const editProductsUpdated = async (req, res) => {
         const updatedFields = {
             productName,
             text1,
-            text2,
+            text2,referral,
             description1,
             description2,
             description3,
             priorityNumber,
-            expiryDate,
+            expiryDate,redirectLink,
             mostDownloads,
             isActive: isActiveValue,
             isPopular: isPopularValue,
