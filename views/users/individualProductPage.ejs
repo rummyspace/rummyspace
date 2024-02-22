@@ -103,19 +103,9 @@
                         <p class="mb-4"><%= productData.description2 %></p>
                         <p class="mb-4"><%= productData.description3 %></p>
                         <div class="row g-4 mb-4">
-                            <% if( productData.redirectLink &&   productData.redirectLink === 'undefined' ){ %>
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                    <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up"><%= productData.mostDownloads %></h1>
-                                    <div class="ps-4">
-                                        <p class="mb-0">Number of</p>
-                                        <h6 class="text-uppercase mb-0">Downloads</h6>
-
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <% } %>
+                            
+                          
+                         
                            
                         </div>
                         <% if( productData.redirectLink &&   productData.redirectLink !== 'undefined' ){ %>
@@ -132,6 +122,18 @@
                             style="background-image: linear-gradient(to right, #4e54c8, #8f94fb); border: none; font-size: 0.8rem;">
                             <i class="fas fa-download mr-1"></i> Download
                         </button>
+                        <hr>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center border-start border-5 border-primary px-3">
+                                <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up"><%= productData.mostDownloads %></h1>
+                                <div class="ps-4">
+                                    <p class="mb-0">Number of</p>
+                                    <h6 class="text-uppercase mb-0">Downloads</h6>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
                         <% }  %>
                     </div>
                 </div>
