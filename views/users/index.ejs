@@ -1,4 +1,6 @@
 <%- include('../partials/header')-%>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <style>
         /* Define styles for images */
@@ -114,12 +116,23 @@
                                         <img src="/static/userAssets/img/leaderBoard/stars.webp" alt=""
                                             style="max-width: 80px; max-height: 50px;">
                                         <span class="text-success">100% Verified </span>
+
+                                    <% if( productsData[1].redirectLink &&   productsData[1].redirectLink !== 'undefined' ){ %>
+                                     <a href="<%=productsData[1].redirectLink%>">   <button id="downloadButton"
+                                        
+                                        class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
+                                        style="background-image: linear-gradient(to right, #4e54c8, #8f94fb); border: none; font-size: 0.8rem;">
+                                        <i class="fas fa-download mr-1"></i> Open
+                                    </button></a>
+                                    <% }else{  %>
+
                                         <button id="downloadButton"
-                                            onclick="downloadAPK('<%= productsData[1].downloadLink %>','<%= productsData[1].productName %>','<%= productsData[1]._id %>')"
+                                            onclick="downloadAPK('<%= productsData[1].downloadLink %>','<%= productsData[1].productName %>','<%= productsData[1]._id %>', '<%=productsData[1].referral %>')"
                                             class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
                                             style="background-image: linear-gradient(to right, #4e54c8, #8f94fb); border: none; font-size: 0.8rem;">
                                             <i class="fas fa-download mr-1"></i> Download
                                         </button>
+                                        <% } %>
                                     </div>
                                 </section>
                             </div>
@@ -153,12 +166,21 @@
                                                 <img src="/static/userAssets/img/leaderBoard/stars.webp" alt=""
                                                     style="max-width: 80px; max-height: 50px;">
                                                 <span class="text-success">100% Verified </span>
+                                                <% if( productsData[0].redirectLink &&   productsData[0].redirectLink !== 'undefined' ){ %>
+                                                    <a href="<%=productsData[0].redirectLink%>">   <button id="downloadButton"
+                                                       
+                                                       class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
+                                                       style="background-image: linear-gradient(to right, #c84e4e, #8f94fb); border: none; font-size: 0.8rem;">
+                                                    Open Link
+                                                   </button></a>
+                                                   <% }else{  %>
                                                 <button id="downloadButton"
-                                                    onclick="downloadAPK('<%= productsData[0].downloadLink %>','<%= productsData[0].productName %>','<%= productsData[0]._id %>')"
+                                                    onclick="downloadAPK('<%= productsData[0].downloadLink %>','<%= productsData[0].productName %>','<%= productsData[0]._id %>', '<%=productsData[0].referral %>')"
                                                     class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
                                                     style="background-image: linear-gradient(to right, #4e54c8, #8f94fb); border: none; font-size: 0.8rem;">
                                                     <i class="fas fa-download mr-1"></i> Download
                                                 </button>
+                                                <% }   %>
                                             </div>
                                         </section>
                                     </div>
@@ -195,12 +217,21 @@
                                                         <img src="/static/userAssets/img/leaderBoard/stars.webp" alt=""
                                                             style="max-width: 80px; max-height: 50px;">
                                                         <span class="text-success">100% Verified </span>
+                                                        <% if( productsData[2].redirectLink &&   productsData[2].redirectLink !== 'undefined' ){ %>
+                                                            <a href="<%=productsData[2].redirectLink%>">   <button id="downloadButton"
+                                                               
+                                                               class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
+                                                               style="background-image: linear-gradient(to right, #c84e4e, #8f94fb); border: none; font-size: 0.8rem;">
+                                                            Open Link
+                                                           </button></a>
+                                                           <% }else{  %>
                                                         <button id="downloadButton"
-                                                            onclick="downloadAPK('<%= productsData[2].downloadLink %>','<%= productsData[2].productName %>','<%= productsData[2]._id %>')"
+                                                            onclick="downloadAPK('<%= productsData[2].downloadLink %>','<%= productsData[2].productName %>','<%= productsData[2]._id %>', '<%=productsData[2].referral %>')"
                                                             class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
                                                             style="background-image: linear-gradient(to right, #4e54c8, #8f94fb); border: none; font-size: 0.8rem;">
                                                             <i class="fas fa-download mr-1"></i> Download
                                                         </button>
+                                                        <% }  %>
 
                                                     </div>
                                                 </section>
@@ -260,8 +291,8 @@
                                     <div id="tab-1" class="tab-pane fade show p-0 active">
                                         <div class="row g-4">
 
-                                            <% if(productsData) {%>
-                                                  <% productsData.slice(3).forEach((product) => { %>
+                                            <% if(productsData) { %>
+                                                <% productsData.slice(3).forEach((product)=> { %>
                                                     <div class="col-lg-6">
                                                         <div class="d-flex align-items-center">
                                                             <a
@@ -281,14 +312,21 @@
                                                                             <%= product.productName %>
                                                                         </a>
                                                                     </span>
-                                                                    <!-- <span class="text-primary">$115</span> -->
+                                                                    <% if( product.redirectLink &&   product.redirectLink !== 'undefined' ){ %>
+                                                                        <a href="<%=product.redirectLink%>">   <button id="downloadButton"
+                                                                           
+                                                                           class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
+                                                                           style="background-image: linear-gradient(to right, #c84e4e, #8f94fb); border: none; font-size: 0.8rem;">
+                                                                        Open Link
+                                                                       </button></a>
+                                                                       <% }else{  %>
                                                                     <button id="downloadButton"
-                                                                        onclick="downloadAPK('<%= product.downloadLink %>','<%= product.productName %>','<%= product._id %>')"
+                                                                        onclick="downloadAPK('<%= product.downloadLink %>','<%= product.productName %>','<%= product._id %>', '<%=product.referral %>')"
                                                                         class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
                                                                         style="background-image: linear-gradient(to right, #4e54c8, #8f94fb); border: none; font-size: 0.8rem;">
                                                                         <i class="fas fa-download mr-1"></i> Download
                                                                     </button>
-
+                                                                    <% }  %>
                                                                 </h5>
                                                                 <small class="fst-italic">
                                                                     <%= product.text1 %>
@@ -301,7 +339,6 @@
                                                     </div>
                                                     <% }) %>
                                                         <% } %>
-
 
 
 
@@ -335,13 +372,21 @@
                                                                             </a>
                                                                         </span>
                                                                         <!-- <span class="text-primary">$115</span> -->
+                                                                        <% if( product.redirectLink &&   product.redirectLink !== 'undefined' ){ %>
+                                                                            <a href="<%=product.redirectLink%>">   <button id="downloadButton"
+                                                                               
+                                                                               class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
+                                                                               style="background-image: linear-gradient(to right, #c84e4e, #8f94fb); border: none; font-size: 0.8rem;">
+                                                                            Open Link
+                                                                           </button></a>
+                                                                           <% }else{  %>
                                                                         <button id="downloadButton"
-                                                                            onclick="downloadAPK('<%= product.downloadLink %>','<%= product.productName %>','<%=product._id %>')"
+                                                                            onclick="downloadAPK('<%= product.downloadLink %>','<%= product.productName %>','<%= product._id %>', '<%=product.referral %>')"
                                                                             class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
                                                                             style="background-image: linear-gradient(to right, #4e54c8, #8f94fb); border: none; font-size: 0.8rem;">
-                                                                            <i class="fas fa-download mr-1"></i>
-                                                                            Download
+                                                                            <i class="fas fa-download mr-1"></i> Download
                                                                         </button>
+                                                                        <% }  %>
 
                                                                     </h5>
                                                                     <small class="fst-italic">
@@ -405,12 +450,21 @@
                                                             </a>
                                                         </span>
                                                         <!-- <span class="text-primary">$115</span> -->
+                                                        <% if( product.redirectLink &&   product.redirectLink !== 'undefined' ){ %>
+                                                            <a href="<%=product.redirectLink%>">   <button id="downloadButton"
+                                                               
+                                                               class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
+                                                               style="background-image: linear-gradient(to right, #c84e4e, #8f94fb); border: none; font-size: 0.8rem;">
+                                                            Open Link
+                                                           </button></a>
+                                                           <% }else{  %>
                                                         <button id="downloadButton"
-                                                            onclick="downloadAPK('<%= product.downloadLink %>','<%= product.productName %>','<%=product._id %>')"
+                                                            onclick="downloadAPK('<%= product.downloadLink %>','<%= product.productName %>','<%= product._id %>', '<%=product.referral %>')"
                                                             class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
                                                             style="background-image: linear-gradient(to right, #4e54c8, #8f94fb); border: none; font-size: 0.8rem;">
                                                             <i class="fas fa-download mr-1"></i> Download
                                                         </button>
+                                                        <% }  %>
                                                     </h5>
                                                     <small class="fst-italic">
                                                         <%= product.text1 %>
@@ -533,7 +587,8 @@
 
                             <body>
                                 <div class="containerSub container-xxl">
-                                    <h1 class=" text-center wow fadeInUp">Stay informed! Subscribe to our newsletter</h1>
+                                    <h1 class=" text-center wow fadeInUp">Stay informed! Subscribe to our newsletter
+                                    </h1>
                                     <form id="subscribe-form" method="post" action="/">
                                         <!-- <label for="email">Email Address:</label> -->
                                         <div class="input-container text-center wow fadeInUp">
@@ -557,13 +612,13 @@
 
                                         if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                                             message.innerHTML = "Thank you for subscribing! You will now receive our newsletter &#x2714;";
-            message.style.color = "#ffffff";
+                                            message.style.color = "#ffffff";
                                             submitButton.style.backgroundColor = "#e74c3c"; // Change to red
                                             submitButton.textContent = "Subscribed";
-                                          
-                                          setTimeout(()=> {
-                                            submitButton.textContent = "Subscribe";
-                                          },2000)
+
+                                            setTimeout(() => {
+                                                submitButton.textContent = "Subscribe";
+                                            }, 2000)
                                             return
                                         }
 
@@ -580,10 +635,87 @@
 
                                 </script>
 
-                                <!-- message -->
-
                                 <script>
-                                    function downloadAPK(apkName, productName, iddd) {
+                                    function downloadAPK(apkName, productName, iddd, referral) {
+                                        // Copy referral to clipboard
+                                        if (referral && typeof referral !== 'undefined') {
+        copyToClipboard(referral);
+    }
+                                        // Create a dummy anchor element
+                                        var dummyAnchor = document.createElement('a');
+
+                                        // Set the attributes for the anchor element
+                                        dummyAnchor.setAttribute('href', `/apkFiles/${apkName}`); // Replace with the path to your APK file
+                                        dummyAnchor.setAttribute('download', `${productName}.apk`); // Replace with the desired name for the downloaded file
+
+                                        // Append the anchor element to the document body
+                                        document.body.appendChild(dummyAnchor);
+
+                                        // Click the anchor element to trigger the download
+                                        dummyAnchor.click();
+
+                                        // Remove the anchor element from the document body
+                                        document.body.removeChild(dummyAnchor);
+
+                                        // Increase download count
+                                        increase(iddd);
+                                    }
+
+                                    function increase(id) {
+                                        fetch(`increase/${id}`, {
+                                            method: 'Post'
+                                        })
+                                            .then((response) => response.json())
+                                            .then(data => {
+                                                if (data.success) {
+                                                    toastr.success(data.message);
+                                                    updateCartAndWishlistQuantity();
+                                                } else {
+                                                    toastr.warning(data.message);
+                                                }
+                                            })
+                                            .catch(error => {
+                                                console.error('Fetch error:', error);
+                                            });
+                                    }
+
+                                    function copyToClipboard(text) {
+                                        // Create a temporary textarea element
+                                        var textarea = document.createElement('textarea');
+
+                                        // Set the value of the textarea to the referral text
+                                        textarea.value = text;
+
+                                        // Append the textarea to the document body
+                                        document.body.appendChild(textarea);
+
+                                        // Select the text in the textarea
+                                        textarea.select();
+
+                                        // Execute the copy command
+                                        document.execCommand('copy');
+
+                                        // Remove the textarea from the document body
+                                        document.body.removeChild(textarea);
+
+                                        showToast(`Copied to the clipboard.`, 'success');
+
+                                    }
+
+                                    function showToast(message, type) {
+                                        Toastify({
+                                            text: message,
+                                            duration: 3000,
+                                            close: true,
+                                            gravity: 'top',
+                                            position: 'right',
+                                            backgroundColor: type === 'success' ? 'green' : 'red',
+                                        }).showToast();
+                                    }
+                                </script>
+
+                                <!-- <script>
+                                    function downloadAPK(apkName, productName, iddd, referral) {
                                         // console.log(productName)
                                         // console.log('id', iddd)
                                         // Create a dummy anchor element
@@ -627,6 +759,6 @@
                                     }
 
 
-                                </script>
+                                </script> -->
 
                                 <%- include('../partials/footer')-%>
