@@ -1,5 +1,8 @@
 
 <%- include('../partials/header')-%>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 <style>
     /* Define styles for images */
     .intro-image {
@@ -100,6 +103,7 @@
                         <p class="mb-4"><%= productData.description2 %></p>
                         <p class="mb-4"><%= productData.description3 %></p>
                         <div class="row g-4 mb-4">
+                            <% if( productData.redirectLink &&   productData.redirectLink === 'undefined' ){ %>
                             <div class="col-sm-6">
                                 <div class="d-flex align-items-center border-start border-5 border-primary px-3">
                                     <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up"><%= productData.mostDownloads %></h1>
@@ -111,15 +115,24 @@
                                     </div>
                                 </div>
                             </div>
+                            <% } %>
                            
                         </div>
+                        <% if( productData.redirectLink &&   productData.redirectLink !== 'undefined' ){ %>
+                            <a href="<%=productData.redirectLink%>">   <button id="downloadButton"
+                               
+                               class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
+                               style="background-image: linear-gradient(to right, #c84e4e, #8f94fb); border: none; font-size: 0.8rem;">
+                            Open Link
+                           </button></a>
+                           <% }else{  %>
                         <button id="downloadButton"
-                        onclick="downloadAPK('<%= productData.downloadLink %>','<%= productData.productName %>','<%=productData._id %>')"
-                        class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
-                        style="background-image: linear-gradient(to right, #4e54c8, #8f94fb); border: none; font-size: 0.8rem;">
-                        <i class="fas fa-download mr-1"></i>
-                        Download
-                    </button>
+                            onclick="downloadAPK('<%= productData.downloadLink %>','<%= productData.productName %>','<%= productData._id %>', '<%=productData.referral %>')"
+                            class="btn btn-primary rounded-pill py-1 py-sm-2 px-2 px-sm-3 shadow-lg"
+                            style="background-image: linear-gradient(to right, #4e54c8, #8f94fb); border: none; font-size: 0.8rem;">
+                            <i class="fas fa-download mr-1"></i> Download
+                        </button>
+                        <% }  %>
                     </div>
                 </div>
             </div>
@@ -138,7 +151,7 @@
                 </div>
         </div>
     <% } %>
-       <script>
+       <!-- <script>
         function downloadAPK(apkName, productName, iddd) {
             // console.log(productName)
             // console.log('id', iddd)
@@ -183,6 +196,85 @@
         }
 
 
+    </script> -->
+
+    <script>
+        function downloadAPK(apkName, productName, iddd, referral) {
+            // Copy referral to clipboard
+            if (referral && typeof referral !== 'undefined') {
+copyToClipboard(referral);
+}
+            // Create a dummy anchor element
+            var dummyAnchor = document.createElement('a');
+
+            // Set the attributes for the anchor element
+            dummyAnchor.setAttribute('href', `/apkFiles/${apkName}`); // Replace with the path to your APK file
+            dummyAnchor.setAttribute('download', `${productName}.apk`); // Replace with the desired name for the downloaded file
+
+            // Append the anchor element to the document body
+            document.body.appendChild(dummyAnchor);
+
+            // Click the anchor element to trigger the download
+            dummyAnchor.click();
+
+            // Remove the anchor element from the document body
+            document.body.removeChild(dummyAnchor);
+
+            // Increase download count
+            increase(iddd);
+        }
+
+        function increase(id) {
+            fetch(`increase/${id}`, {
+                method: 'Post'
+            })
+                .then((response) => response.json())
+                .then(data => {
+                    if (data.success) {
+                        toastr.success(data.message);
+                        updateCartAndWishlistQuantity();
+                    } else {
+                        toastr.warning(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
+        }
+
+        function copyToClipboard(text) {
+            // Create a temporary textarea element
+            var textarea = document.createElement('textarea');
+
+            // Set the value of the textarea to the referral text
+            textarea.value = text;
+
+            // Append the textarea to the document body
+            document.body.appendChild(textarea);
+
+            // Select the text in the textarea
+            textarea.select();
+
+            // Execute the copy command
+            document.execCommand('copy');
+
+            // Remove the textarea from the document body
+            document.body.removeChild(textarea);
+
+            showToast(`Copied to the clipboard.`, 'success');
+
+        }
+
+        function showToast(message, type) {
+            Toastify({
+                text: message,
+                duration: 3000,
+                close: true,
+                gravity: 'top',
+                position: 'right',
+                backgroundColor: type === 'success' ? 'green' : 'red',
+            }).showToast();
+        }
     </script>
 
 <%- include('../partials/footer')-%>
