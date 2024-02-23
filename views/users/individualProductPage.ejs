@@ -115,6 +115,17 @@
                                style="background-image: linear-gradient(to right, #c84e4e, #8f94fb); border: none; font-size: 2rem;">
                             Open Link
                            </button></a>
+                           <div class="col-sm-6">
+                            <div class="d-flex align-items-center border-start border-5 border-primary px-3">
+                                <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up"><%= productData.mostDownloads %></h1>
+                                <div class="ps-4">
+                                    <p class="mb-0">Number of</p>
+                                    <h6 class="text-uppercase mb-0">Registers</h6>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
                            <% }else{  %>
                         <button id="downloadButton"
                             onclick="downloadAPK('<%= productData.downloadLink %>','<%= productData.productName %>','<%= productData._id %>', '<%=productData.referral %>')"
