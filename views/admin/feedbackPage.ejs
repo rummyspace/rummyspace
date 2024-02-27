@@ -98,21 +98,21 @@
                 </div>
 
             </div>
-            <div class="card mb-4">
+            <div class="card mb-2">
                 
 
                 <div class="card-body">
-                    <div class="row gx-3 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5">
+                    <div class="row gx-3 row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-xl-2 row-cols-xxl-3">
                         <% if(feedbackData && feedbackData.length > 0) { %>
                             <% feedbackData.forEach((feedback, index) => { %>
                                 <div class="col">
                                     <div class="card card-product-grid">
                                         <div class="info-wrap">
                                             <div class="text-truncate mb-2">No : <%= index + 1 %></div>
-                                            <a href="#" class="title price">Name: <%= feedback.name %></a>
-                                            <div class="text-truncate">Email: <%= feedback.email %></div>
-                                            <div class="text-truncate">Subject: <%= feedback.subject %></div>
-                                            <div class="text-truncate mb-2">Message: <%= feedback.message %></div>
+                                            <div>Name: <%= feedback.name %></div>
+                                            <div  >Email: <%= feedback.email %></div>
+                                            <div >Subject: <%= feedback.subject %></div>
+                                            <div   mb-2">Message: <%= feedback.message %></div>
                                             <div class="text-truncate mb-2">Date: <%= feedback.date.toLocaleString() %></div>
                                             <!-- Displaying index number -->
                                         </div>
